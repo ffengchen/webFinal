@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Management</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet"
+        href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../public/add.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
+  <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    #parse("velocity/navbar.vm")
+
+<div class="container">
+  <div class="panel-heading">
+    <h3 class="panel-title">Create Recipe</h3>
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <div class="col-xs-12">
+          <input type="text" class="form-control" id="titlename"
+                 placeholder="title" name="title">
+        </div>
+      </div>
+      <label>Select tags</label>
+      <br>
+        ##      <select id="example-getting-started" multiple="multiple" >
+        ##          #foreach(${tag} in ${tags})
+        ##            <option name="tags[]">${tag.name}</option>
+        ##          #end
+        ##      </select>
+
+        #foreach(${tag} in ${tags})
+          <input type="checkbox" name="tags[]" value="${tag.id}">${tag.name}<br>
+
+        #end
+      <div class="form-group">
+        <div class="col-xs-12">
+          <label>Upload picture url</label>
+          <input type="text" class="form-control" id="thumbnail"
+                 placeholder="thumbnail url" name="thumbnail">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-12">
+          <textarea class="form-control" rows="2" placeholder="Input Introduction"
+                    id="description" name="description"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-12">
+          <textarea class="form-control" rows="18" placeholder="Input Content"
+                    id="content" name="content"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-10">
+          <a href="postsManagement.html">
+            <button type="submit" class="btn btn-primary">Back</button>
+          </a>
+          <button type="submit" class="btn btn-primary"
+                  formmethod="post" onclick="check()">Create Recipe
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+    ##<script type="text/javascript">
+    ##  $(
+    ##          function(){
+    ##            var checkBoxAll =$("input[name^='tags[]']");
+    ##            var checkArray=${tags};
+    ##            console.info("checkArray=",checkArray);
+    ##            for(var i=0;i<checkArray.length;i++){//
+    ##
+    ##              $.each(checkBoxAll,function(j,checkbox){
+    ##
+    ##                var checkValue=$(checkbox).val();
+    ##                if(checkArray[i]==checkValue){
+    ##                  $(checkbox).attr("checked",true);
+    ##                }
+    ##              })
+    ##            }
+    ##          });
+    ##</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+</body>
+</html>

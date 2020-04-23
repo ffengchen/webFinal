@@ -1,0 +1,177 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="container-fluid">
+          ##                recipes
+
+
+              <div id="result">
+                <h3 class="title"></h3>
+                <h4 class="author"></h4>
+
+                <img src="" alt="" class="thumbnail">
+              </div>
+
+            <script>
+              function function2(){
+                var result = document.getElementById('search-text').value;
+                $.ajax({
+                  url: "https://api.spoonacular.com/recipes/search?query="+result+"&number=1&apiKey=9aa72609db3644339ae3e9af0f1c1d1a",
+                  type: 'GET',
+                  dataType: 'json',
+                  success: handleResponse
+                });
+                function handleResponse(res){
+
+
+                  $.each(res.results,function(i,item){
+
+                    var title = item['title'],
+                            author = item['sourceUrl'],
+                            thumb = item['image'];
+
+                    $('.title').text(title);
+                    $('.author').text(author);
+                    $('.thumbnail').attr('src',thumb);
+
+                  })
+                }
+              }
+            </script>
+
+          #foreach(${recipe} in ${recipes})
+            <div class="card mb-4">
+              <img class="card-img-top postSize" src="${recipe.thumbnail}" alt="Card image cap">
+              <div class="card-body">
+                <h2 class="card-title"><a
+                    href="/recipe/${recipe.id.toHexString()}">${recipe.title}</a>
+                    #foreach(${tag} in ${recipe.tags})
+                      <button type="button" class="btn btn-default btn-sm tagStyle">
+                        <span class="glyphicon glyphicon-tag"></span> ${tag.name}
+                      </button>
+                    #end
+                </h2>
+                <p class="card-text">${recipe.description}</p>
+                <a href="/recipe/${recipe.id.toHexString()}" class="btn btn-primary">Read More
+                  &rarr;</a>
+              </div>
+              <div class="card-footer text-muted">
+                Posted on ${recipe.createTime}
+              </div>
+            </div>
+          #end
+
+
+        <br>
+        <br>
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+
+
+          <form id="form">
+            <div class="form-group">
+              <label>Enter Recipe Name</label>
+              <input type="text" class="form-control" id="search-text">
+            </div>
+            <br>
+            <div class="search-button">
+              <button class="btn btn-secondary" onclick="function2();" type="button" id="search-button" class="btn btn-default">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag1
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag2
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag3
+                  </button>
+                </li>
+              </ul>
+
+            </div>
+            <div class="col-lg-4">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag4
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag5
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag6
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag7
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag8
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> Tag9
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card my-4">
+        <h5 class="card-header">Introduction</h5>
+        <div class="card-body">
+          Welcome to the recipe world!
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">pley</a>
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Recipes<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/tagsmanagement">Tags<span class="sr-only">(current)</span></a>
+      </li>
+
+
+        ##            <li class="nav-item">
+        ##                <a class="nav-link" href="postsManagement.html">Post Management</a>
+        ##            </li>
+        ##            <li class="nav-item">
+        ##                <a class="nav-link" href="tagsManagement.html">Tag Management</a>
+        ##            </li>
+        ##            <li class="nav-item">
+        ##                <a class="nav-link" href="userManagement.html">User Management</a>
+        ##            </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        #if(${user})
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle navbar_user" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">${user.username}</a>
+            <ul class="dropdown-menu">
+              <li role="separator" class="divider"></li>
+              <li><a href="/user/${user.id.toHexString()}">Profile</a></li>
+              <li><a href="/logout">Log out</a></li>
+            </ul>
+          </li>
+        #else
+          <li class="dropdown"><a href="/login" role="button">Login</a></li>
+        #end
+
+    </ul>
+
+  </div>
+</nav>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" type="text/css" href="/add.css"/>
+
+  <link rel="stylesheet"
+        href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+    #parse("velocity/navbar.vm")
+<br>
+<div class="container">
+  <div class="row">
+
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="${thumbnail}" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">${username}</h5>
+            <p class="card-text">user group: ${userGroup}</p>
+            <p class="card-text"><small class="text-muted">Created on ${createTime}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Title" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Tag" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+
+      </form>
+      <br>
+      <br>
+      <br>
+      <table class="table">
+        <thead class="thread-light">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Time</th>
+          <th scope="col">Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach(${recipe} in ${recipes})
+            <tr>
+              <th scope="row"><a href="/recipe/${recipe.id}">${recipe.title}</a></th>
+              <td>
+                  #foreach(${tag} in ${recipe.tags})
+                    <span>${tag.name}</span>
+                  #end
+
+              </td>
+              <td>${recipe.createTime}</td>
+              <td>
+                  #if(${user})
+                    <a href="/updaterecipe/${recipe.id}">
+                      <button type="button" class="btn btn-warning">Update</button>
+                    </a>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                  #end
+
+              </td>
+            </tr>
+            #end
+
+            #if(${user})
+            <tr>
+              <td>
+                <a href="/createrecipe/${id}">
+                  <button type="button" class="btn btn-primary">Add a new post</button>
+                </a>
+              </td>
+            </tr>
+            #end
+
+        </tbody>
+      </table>
+
+      <table class="table">
+        <thead class="thread-light">
+        <tr>
+          <th scope="col">Recipe</th>
+          <th scope="col">Comment</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Time</th>
+          <th scope="col">Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach(${comment} in ${comments})
+            <tr>
+              <th scope="row"><a
+                  href="/recipe/${comment.recipeId}">${commentTitle.get(${comment.id})}</a>
+              </th>
+              <td>${comment.content}</td>
+              <td>5</td>
+              <td>${comment.createTime}</td>
+              <td>
+                  #if(${user})
+                    <button type="button" class="btn btn-danger">Delete</button>
+                  #end
+              </td>
+            </tr>
+            #end
+
+        </tbody>
+      </table>
+
+
+      <table class="table">
+        <thead class="thread-light">
+        <tr>
+          <th scope="col">Followed User</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach(${u} in ${followed})
+            <tr>
+              <td><a href="/user/${u.id}">${u.username}</a></td>
+
+            </tr>
+            #end
+
+        </tbody>
+      </table>
+
+      <table class="table">
+        <thead class="thread-light">
+        <tr>
+          <th scope="col">Favourite Recipes</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach(${fr} in ${favorite})
+            <tr>
+              <td><a href="/recipe/${fr.id}">${fr.title}</a></td>
+
+            </tr>
+            #end
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="http://intercoolerjs.org/release/intercooler-1.2.3.min.js"></script>
+
+</body>
+</html>

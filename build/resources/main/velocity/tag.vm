@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-framework="intercoolerjs">
+<head>
+  <meta charset="UTF-8">
+    ##  <meta name="intercoolerjs:use-actual-http-method" content="true"/>
+
+  <title>Tag Management</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" type="text/css" href="/add.css"/>
+  <link rel="stylesheet"
+        href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    #parse("velocity/navbar.vm")
+
+<div class="container">
+
+
+  <div class="row">
+    <h1>${tag.name}</h1>
+      ##        <form class="form-inline my-2 my-lg-0">
+      ##            <input class="form-control mr-sm-2" type="text" placeholder="New tag name" name="newTag">
+      ##
+      ##            <button class="btn btn-outline-success my-2 my-sm-0" formmethod="post">Create new tag</button>
+      ##
+      ##        </form>
+    <br>
+    <br>
+    <br>
+    <table class="table">
+      <thead class="thread-light">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">createTime</th>
+        <th scope="col">lastEditTime</th>
+        <th scope="col">tags</th>
+      </tr>
+      </thead>
+      <tbody>
+
+          #foreach(${recipe} in ${recipes})
+          <tr>
+            <td><a href="/recipe/${recipe.id}">${recipe.title}</a></td>
+            <td><a
+                href="/user/${recipeAuthor.get(${recipe.id}).id}">${recipeAuthor.get(${recipe.id}).username}</a>
+            </td>
+            <td>${recipe.createTime}</td>
+            <td>${recipe.lastEditTime}</td>
+            <td>
+                #foreach(${tag} in ${recipe.tags})
+                  <button type="button" class="btn btn-default btn-sm tagStyle">
+                    <span class="glyphicon glyphicon-tag"></span> ${tag.name}
+                  </button>
+                #end
+            </td>
+          </tr>
+          #end
+      <tr>
+        <td colspan="4">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </td>
+
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="http://intercoolerjs.org/release/intercooler-1.2.3.min.js"></script>
+
+</body>
+</html>

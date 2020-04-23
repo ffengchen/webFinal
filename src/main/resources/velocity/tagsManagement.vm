@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-framework="intercoolerjs">
+<head>
+  <meta charset="UTF-8">
+  <title>Tag Management</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" type="text/css" href="/add.css"/>
+  <link rel="stylesheet"
+        href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    #parse("velocity/navbar.vm")
+
+<div class="container">
+
+
+  <div class="row">
+      #if(${user})
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="New tag name" name="newTag">
+          <button class="btn btn-outline-success my-2 my-sm-0" formmethod="post">Create new tag
+          </button>
+
+        </form>
+      #end
+
+    <br>
+    <br>
+    <br>
+    <table class="table">
+      <thead class="thread-light">
+      <tr>
+        <th scope="col">Tag</th>
+        <th scope="col">createTime</th>
+        <th scope="col">Recipes</th>
+        <th scope="col">Operation</th>
+      </tr>
+      </thead>
+      <tbody id="tags">
+          #parse("/velocity/tags.vm")
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="http://intercoolerjs.org/release/intercooler-1.2.3.min.js"></script>
+
+</body>
+</html>
