@@ -3,14 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Post Detail</title>
-    ##  <link rel="stylesheet"
-    ##        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    ##  <link rel="stylesheet"
-    ##        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    ##  <link rel="stylesheet" type="text/css" href="/add.css"/>
-    ##  <link rel="stylesheet" media="screen" href="css/bootstrap.css">
-    ##  <link rel="stylesheet"
-    ##        href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
