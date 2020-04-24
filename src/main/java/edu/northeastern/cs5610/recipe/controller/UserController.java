@@ -280,7 +280,62 @@ public class UserController implements Controller {
     }
   }
 
+    /**
+     * Update the user’s favorite list to favorite the recipe. Check if both item exists first.
+     *
+     * @param username A String of username
+     * @param recipeId A String of target name
+     * @throws KeyNotFoundException thrown when the key is null
+     * @throws UsernameNotFoundException thrown when the username not stored in the database
+     * @throws DuplicateKeyException thrown when you cannot find the corresponding key
+     * @throws NullKeyException thrown when there's already a key in the follow list
+     */
+    public void favoriteRecipe(@Nonnull String username, @Nonnull String recipeId)
+      throws KeyNotFoundException, UsernameNotFoundException, DuplicateKeyException,
+      NullKeyException {
+    User user = this.getUserByUsername(username);
+    if (user == null) {
+      throw new UsernameNotFoundException("Cannot find current User");
+    }
+    Recipe recipe = recipeDao.getRecipe(recipeId);
+    if (user.getFavorite() == null) {
+      user.setFavorite(new ArrayList<>());
+    }
+    List<ObjectId> favoriteList = user.getFavorite();
 
+    if (favoriteList.contains(recipeId)) {
+      throw new DuplicateKeyException("Already followed that recipe");
+    }
+    favoriteList.add(new ObjectId(recipeId));
+    this.updateUser(user);
+  }
+
+    /**
+     * Update the user’s favorite list to unfavorite the recipe. Check if both item exists first.
+     *
+     * @param username A String of username
+     * @param recipeId A String of target name
+     * @throws KeyNotFoundException thrown when the key is null
+     * @throws UsernameNotFoundException thrown when the username not stored in the database
+     * @throws DuplicateKeyException thrown when you cannot find the corresponding key
+     * @throws NullKeyException thrown when there's already a key in the follow list
+     */
+    public void unfavoriteRecipe(@Nonnull String username, @Nonnull String recipeId)
+      throws KeyNotFoundException, UsernameNotFoundException, DuplicateKeyException,
+      NullKeyException {
+    User user = this.getUserByUsername(username);
+    if (user == null) {
+      throw new UsernameNotFoundException("Cannot find current User");
+    }
+    Recipe recipe = recipeDao.getRecipe(recipeId);
+    List<ObjectId> favoriteList = user.getFavorite();
+    ObjectId id = new ObjectId(recipeId);
+    if (!favoriteList.contains(id)) {
+      throw new KeyNotFoundException("Recipe is not favorited by the user");
+    }
+    favoriteList.remove(id);
+    this.updateUser(user);
+  }
 
     /**
      * Gets user by email.
