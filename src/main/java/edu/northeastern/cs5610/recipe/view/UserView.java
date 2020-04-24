@@ -106,10 +106,7 @@ public class UserView implements View {
 //          for (ObjectId i : user.getFavorite()) {
 //            favouriteRecipes.add(recipeController.getRecipe(i));
 //          }
-          for (Comment comment : comments) {
-            commentTitle
-                .put(comment.getId(), recipeController.getRecipe(comment.getRecipeId()).getTitle());
-          }
+
 
           model.put("username", user.getUsername());
           model.put("id", userId);
@@ -118,7 +115,6 @@ public class UserView implements View {
 //          model.put("favorite", favouriteRecipes);
 //          model.put("followed", followedUsers);
           model.put("recipes", recipes);
-          model.put("comments", comments);
           model.put("thumbnail", user.getThumbnail());
           model.put("commentTitle", commentTitle);
           User authenticatedUser = getAuthenticatedUser(request);
