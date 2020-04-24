@@ -61,15 +61,7 @@ public class UserDao implements Dao {
     return userCollection.find(eq("_id", id)).first();
   }
 
-    /**
-     * Gets user.
-     *
-     * @param id the id
-     * @return the user
-     */
-    public User getUser(@Nonnull String id) {
-    return this.getUser(new ObjectId(id));
-  }
+
 
     /**
      * Gets users.
@@ -99,25 +91,7 @@ public class UserDao implements Dao {
     return id;
   }
 
-    /**
-     * Update user.
-     *
-     * @param user the user
-     * @throws NullKeyException the null key exception
-     * @throws KeyNotFoundException the key not found exception
-     */
-    public void updateUser(@Nonnull User user) throws NullKeyException, KeyNotFoundException {
-    log.debug("UserDao > updateUser(...)");
-    ObjectId id = user.getId();
-    if (id == null) {
-      throw new NullKeyException("NullKeyException");
-    }
 
-    if (this.getUser(id) == null) {
-      throw new KeyNotFoundException("KeyNotFoundException");
-    }
-    DatabaseUtil.updateHelper(user, id, userCollection);
-  }
 
     /**
      * Delete user long.
@@ -136,16 +110,7 @@ public class UserDao implements Dao {
     return res;
   }
 
-    /**
-     * Delete user long.
-     *
-     * @param id the id
-     * @return the long
-     * @throws KeyNotFoundException the key not found exception
-     */
-    public long deleteUser(@Nonnull String id) throws KeyNotFoundException {
-    return this.deleteUser(new ObjectId(id));
-  }
+
 
     /**
      * Gets user by username.

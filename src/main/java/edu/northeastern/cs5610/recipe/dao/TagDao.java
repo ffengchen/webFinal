@@ -147,16 +147,7 @@ public class TagDao implements Dao {
     return res;
   }
 
-  /**
-   * Delete tag long.
-   *
-   * @param id the id
-   * @return the long
-   * @throws KeyNotFoundException the key not found exception
-   */
-  public long deleteTag(@Nonnull String id) throws KeyNotFoundException {
-    return this.deleteTag(new ObjectId(id));
-  }
+
 
 
 }

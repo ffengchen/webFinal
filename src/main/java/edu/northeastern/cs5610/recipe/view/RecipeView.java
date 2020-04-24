@@ -268,48 +268,7 @@ RecipeView implements View {
           return renderTemplate("velocity/updateRecipe.vm", new HashMap<>());
         });
 
-    post(
-        "/recipe/follow",
-        (request, response) -> {
-          String targetName = request.queryParams("target");
-          String followerName = request.queryParams("followerName");
-          String id = request.queryParams("id");
-          Map<String, Object> model = new HashMap<>();
-          model.put("isFollowed", true);
-          try {
-            userController.followUser(followerName, targetName);
-          } catch (NullKeyException e) {
-            e.printStackTrace();
-          } catch (DuplicateKeyException e) {
-            userController.unfollowUser(followerName, targetName);
-            model.put("isFollowed", false);
-          } catch (KeyNotFoundException e) {
-            e.printStackTrace();
-          } catch (UsernameNotFoundException e) {
-            e.printStackTrace();
-          } finally {
-            response.redirect("/recipe/" + id, 301);
-          }
-          return id;
-        });
 
-    post(
-        "/recipe/favourite",
-        (request, response) -> {
-          String favouriteRecipe = request.queryParams("favouriteRecipe");
-
-          try {
-            String favouriteUser = request.queryParams("favouriteUser");
-            userController.addFavourite(new ObjectId(favouriteRecipe), new ObjectId(favouriteUser));
-          } catch (Exception e) {
-            e.printStackTrace();
-          } finally {
-            response.redirect("/recipe/" + favouriteRecipe, 301);
-
-          }
-
-          return favouriteRecipe;
-        });
 
 
   }

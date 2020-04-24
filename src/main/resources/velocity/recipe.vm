@@ -32,17 +32,7 @@
       <ul class="card mb-4">
 
         <h2 class="card-header">${title}
-          <div align="right">
-            <form action="favourite">
-              <input name="favouriteRecipe" type="hidden" value=${recipeId}>
-              <input name="favouriteUser" type='hidden' value=${user.id}>
-              <button type="submit" class="btn btn-warning"
-                      formmethod="post">
-                Add to favorite/Remove from favorite
-              </button>
 
-            </form>
-          </div>
         </h2>
 
 
@@ -76,8 +66,6 @@
 
             </li>
 
-            <li class="list-group-item">Created: ${createTime}</li>
-            <li class="list-group-item">Last edit: ${lastEditTime}</li>
 
             <li>
 
@@ -175,28 +163,6 @@
     <div class="card-body">
       <div class="input-group">
         <img src="${userThumbnail}" class="card-img" alt="...">
-      </div>
-      <br>
-      <div>
-
-#if(${user})
-
-  <form action="follow">
-          <input name="target" type="hidden" value=${username}>
-          <input name="followerName" type='hidden' value=${user.username}>
-          <input name="id" type='hidden' value=${recipeId}>
-  #if(${user})
-
-    <div>
-            <button type="submit" class="btn btn-primary"
-                    formmethod="post">
-              Follow/UnFollow
-            </button>
-          </div>
-    #end
-
-        </form>
-  #end
       </div>
 
 

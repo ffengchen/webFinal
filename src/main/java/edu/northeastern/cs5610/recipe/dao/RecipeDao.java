@@ -39,19 +39,6 @@ public class RecipeDao implements Dao {
   }
 
 
-  public void setRecipeCollection(MongoCollection<Recipe> recipeCollection) {
-    this.recipeCollection = recipeCollection;
-  }
-
-  /**
-   * Gets recipe.
-   *
-   * @param id the id
-   * @return the recipe
-   */
-  public Recipe getRecipe(String id) {
-    return this.getRecipe(new ObjectId(id));
-  }
 
   /**
    * Gets recipe.
@@ -123,16 +110,7 @@ public class RecipeDao implements Dao {
     DatabaseUtil.updateHelper(recipe, id, recipeCollection);
   }
 
-  /**
-   * Delete recipe long.
-   *
-   * @param id the id
-   * @return the long
-   * @throws KeyNotFoundException the key not found exception
-   */
-  public long deleteRecipe(@Nonnull String id) throws KeyNotFoundException {
-    return this.deleteRecipe(new ObjectId(id));
-  }
+
 
   /**
    * Delete recipe long.
@@ -165,27 +143,7 @@ public class RecipeDao implements Dao {
     return recipes;
   }
 
-  /**
-   * Gets recipes by user id.
-   *
-   * @param userId the user id
-   * @return the recipes by user id
-   */
-  public List<Recipe> getRecipesByUserId(String userId) {
-    return this.getRecipesByUserId(new ObjectId(userId));
-  }
 
-  /**
-   * Gets recipes by tag.
-   *
-   * @param tagName the tag name
-   * @return the recipes by tag
-   */
-  public List<Recipe> getRecipesByTag(String tagName) {
-    log.debug("RecipeDao > getRecipesByTag(...)");
-    List<Recipe> recipes =
-        recipeCollection.find(eq("tags.name", tagName)).into(new ArrayList<>());
-    return recipes;
-  }
+
 
 }

@@ -2,8 +2,6 @@
 <html lang="en" data-framework="intercoolerjs">
 <head>
   <meta charset="UTF-8">
-    ##  <meta name="intercoolerjs:use-actual-http-method" content="true"/>
-
   <title>Tag Management</title>
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -24,12 +22,6 @@
 
   <div class="row">
     <h1>${tag.name}</h1>
-      ##        <form class="form-inline my-2 my-lg-0">
-      ##            <input class="form-control mr-sm-2" type="text" placeholder="New tag name" name="newTag">
-      ##
-      ##            <button class="btn btn-outline-success my-2 my-sm-0" formmethod="post">Create new tag</button>
-      ##
-      ##        </form>
     <br>
     <br>
     <br>

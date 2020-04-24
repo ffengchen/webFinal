@@ -169,16 +169,7 @@ public class RecipeController implements Controller {
     return recipeDao.getRecipesByUserId(userId);
   }
 
-    /**
-     * Get all recipes with the tag name.
-     *
-     * @param tagName String of tagName.
-     * @return List of recipes.
-     */
-    public List<Recipe> getRecipesByTag(String tagName) {
-    log.debug("RecipeController > getRecipesByTag(...)");
-    return recipeDao.getRecipesByTag(tagName);
-  }
+
 
     /**
      * Get favorite count by recipe id.
@@ -199,14 +190,6 @@ public class RecipeController implements Controller {
   }
 
 
-    /**
-     * Count recipe favorite int.
-     *
-     * @param recipeId the recipe id
-     * @return the int
-     */
-    public int countRecipeFavorite(String recipeId) {
-    return this.countRecipeFavorite(new ObjectId(recipeId));
-  }
+
 
 }

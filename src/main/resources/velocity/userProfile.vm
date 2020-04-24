@@ -30,8 +30,6 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">${username}</h5>
-            <p class="card-text">user group: ${userGroup}</p>
-            <p class="card-text"><small class="text-muted">Created on ${createTime}</small></p>
           </div>
         </div>
       </div>
@@ -39,13 +37,7 @@
 
 
     <div class="row">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Title" aria-label="Search">
-        <input class="form-control mr-sm-2" type="search" placeholder="Tag" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
-
-      </form>
       <br>
       <br>
       <br>
@@ -94,70 +86,12 @@
         </tbody>
       </table>
 
-      <table class="table">
-        <thead class="thread-light">
-        <tr>
-          <th scope="col">Recipe</th>
-          <th scope="col">Comment</th>
-          <th scope="col">Rating</th>
-          <th scope="col">Time</th>
-          <th scope="col">Operation</th>
-        </tr>
-        </thead>
-        <tbody>
-            #foreach(${comment} in ${comments})
-            <tr>
-              <th scope="row"><a
-                  href="/recipe/${comment.recipeId}">${commentTitle.get(${comment.id})}</a>
-              </th>
-              <td>${comment.content}</td>
-              <td>5</td>
-              <td>${comment.createTime}</td>
-              <td>
-                  #if(${user})
-                    <button type="button" class="btn btn-danger">Delete</button>
-                  #end
-              </td>
-            </tr>
-            #end
-
-        </tbody>
-      </table>
 
 
-      <table class="table">
-        <thead class="thread-light">
-        <tr>
-          <th scope="col">Followed User</th>
-        </tr>
-        </thead>
-        <tbody>
-            #foreach(${u} in ${followed})
-            <tr>
-              <td><a href="/user/${u.id}">${u.username}</a></td>
 
-            </tr>
-            #end
 
-        </tbody>
-      </table>
 
-      <table class="table">
-        <thead class="thread-light">
-        <tr>
-          <th scope="col">Favourite Recipes</th>
-        </tr>
-        </thead>
-        <tbody>
-            #foreach(${fr} in ${favorite})
-            <tr>
-              <td><a href="/recipe/${fr.id}">${fr.title}</a></td>
 
-            </tr>
-            #end
-
-        </tbody>
-      </table>
 
     </div>
 
