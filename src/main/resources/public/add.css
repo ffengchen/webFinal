@@ -70,7 +70,9 @@
 }
 
 
-
+body {
+  background: url("/pic/bg.png");
+}
 
 
 :root {
@@ -83,7 +85,17 @@
   min-height: 100vh;
 }
 
+.bg-image {
+  background-image: url('/pic/loginView.jpg');
+  background-size: cover;
+  background-position: center;
+}
 
+.bg-image2 {
+  background-image: url('/pic/registerView.jpg');
+  background-size: cover;
+  background-position: center;
+}
 
 .login-heading {
   font-weight: 300;
