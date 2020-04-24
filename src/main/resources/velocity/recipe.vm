@@ -163,7 +163,9 @@
       <h5 class="card-header">${username}</h5>
     </a>
     <div class="card-body">
-     
+      <div class="input-group">
+        <img src="${userThumbnail}" class="card-img" alt="...">
+      </div>
       <br>
 
 
