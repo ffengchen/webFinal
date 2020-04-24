@@ -94,70 +94,7 @@
         </tbody>
       </table>
 
-      <table class="table">
-        <thead class="thread-light">
-        <tr>
-          <th scope="col">Recipe</th>
-          <th scope="col">Comment</th>
-          <th scope="col">Rating</th>
-          <th scope="col">Time</th>
-          <th scope="col">Operation</th>
-        </tr>
-        </thead>
-        <tbody>
-            #foreach(${comment} in ${comments})
-            <tr>
-              <th scope="row"><a
-                  href="/recipe/${comment.recipeId}">${commentTitle.get(${comment.id})}</a>
-              </th>
-              <td>${comment.content}</td>
-              <td>5</td>
-              <td>${comment.createTime}</td>
-              <td>
-                  #if(${user})
-                    <button type="button" class="btn btn-danger">Delete</button>
-                  #end
-              </td>
-            </tr>
-            #end
-
-        </tbody>
-      </table>
-
-
-      <table class="table">
-        <thead class="thread-light">
-        <tr>
-          <th scope="col">Followed User</th>
-        </tr>
-        </thead>
-        <tbody>
-            #foreach(${u} in ${followed})
-            <tr>
-              <td><a href="/user/${u.id}">${u.username}</a></td>
-
-            </tr>
-            #end
-
-        </tbody>
-      </table>
-
-      <table class="table">
-        <thead class="thread-light">
-        <tr>
-          <th scope="col">Favourite Recipes</th>
-        </tr>
-        </thead>
-        <tbody>
-            #foreach(${fr} in ${favorite})
-            <tr>
-              <td><a href="/recipe/${fr.id}">${fr.title}</a></td>
-
-            </tr>
-            #end
-
-        </tbody>
-      </table>
+      
 
     </div>
 
